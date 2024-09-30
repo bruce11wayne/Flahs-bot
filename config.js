@@ -13,14 +13,13 @@ import { en, es, id, ar, pt } from "./lib/idiomas/total-idiomas.js"
 // [ES] > Agrega el número que será Bot y los que serán propietarios.
 // [EN] > Add the number that will be Bot and those that will be owners.
 global.owner = [
-["966554344908", '𝙱𝚁𝚄𝙲𝙴 𝚆𝙰𝚈𝙽𝙴 𝙻 🦇', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈
-["966534150708", '𝚂𝙿𝙴𝙴𝙳𝙸 🦇', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈
-["967733674344", '𝙽𝚏 / 𝚂𝚞𝚔𝚞𝚗𝚊 🦇', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈 
+["966554344908", '𝙱𝚁𝚄𝙲𝙴 𝙻 🦇', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈
+["966534150708", '𝚂𝙿𝙴𝙴𝙳𝙸 🦇', true], //𝙂𝙖𝙩𝙖𝘽𝙤𝙩-𝙈𝘿 💖🐈 
 ]
 
 
-global.mods = []
-global.prems = []
+global.mods = ['966554344908', '967737053541', '967733674344', '966534150708','966570050472'];
+global.prems = ['966554344908', '967737053541', '967733674344', '966534150708','966570050472'];
 
 // Cambiar a false para usar el Bot desde el mismo numero del Bot.
 global.isBaileysFail = false
