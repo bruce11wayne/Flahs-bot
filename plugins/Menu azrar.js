@@ -1,145 +1,165 @@
-function clockString(ms) {
-    let h = Math.floor(ms / 3600000);
-    let m = Math.floor(ms % 3600000 / 60000);
-    let s = Math.floor(ms % 60000 / 1000);
-    return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
-}
+import { prepareWAMessageMedia, generateWAMessageFromContent } from '@whiskeysockets/baileys';
 
-import pkg from '@whiskeysockets/baileys';
-const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+    const taguser = '@' + m.sender.split("@s.whatsapp.net")[0];
 
-const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems}) => {
-    let d = new Date(new Date + 3600000);
-    let locale = 'ar';
-    let week = d.toLocaleDateString(locale, { weekday: 'long' });
-    let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
-    let _uptime = process.uptime() * 1000;
-    let uptime = clockString(_uptime);
-    let user = global.db.data.users[m.sender];
-    let name = conn.getName(m.sender)
-    let { money, joincount } = global.db.data.users[m.sender];
-    let { exp, limit, level, role } = global.db.data.users[m.sender];
-    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length;
-    let more = String.fromCharCode(8206);
-    let readMore = more.repeat(850);
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-    let taguser = '@' + m.sender.split("@s.whatsapp.net")[0];
-  await conn.sendMessage(m.chat, { react: { text: '📂', key: m.key } })
-  const zack = 'https://envs.sh/wHc.jpg'
-  const mentionId = m.key.participant || m.key.remoteJid;
- 
-conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { header: { title: `harley`}, body: { text: `˼⚡˹↜ مـࢪحـبـا بـك/ي @${mentionId.split('@')[0]}
-> ˼🪪˹↜ مــعــلــومــاتــك ↶
-╮───────────────────⟢ـ
-┆⚡↜ بـريـمـيـوم↞⌊ ${user.premiumTime > 0 ? 'مــمـ🔱ـيز' : (isPrems ? 'مــمـ🔱ـيز' : 'عــ🍁ــادي') || ''} ⌉
-┆⚜️↜ مـــســـتواك↞⌊ ${level} ⌉
-┆💫↜ رتـبـتـك↞⌊ ${role} ⌉
-┆🧰↜ الـخـبـرة↞⌊ ${exp} ⌉
-┆💎↜ الـمـاس↞⌊ ${limit} ⌉
-╯───────────────────⟢ـ
-> ˼🤖˹↜ الــبــوت↶
-╮───────────────────⟢ـ
-┆⚙️ ↜اسـم الـبـوت↶﹝𝐅𝐋𝐀𝐒𝐇﹞
-┆🪄 ↜الـمـطـور ↶﹝𝐅𝐋𝐀𝐒𝐇_𝐓𝐄𝐀𝐌﹞
-┆📌 ↜الـتـشـغـيـل ↶﹝${uptime}﹞
-┆🔖 ↜الــمــســتـخـدمـيـن ↶﹝${rtotalreg}﹞
-╯───────────────────⟢ـ
-> © 𝐍𝐀𝐑𝐔𝐓𝐎 & 𝐙𝐀𝐂𝐊 2025`,subtitle: "Araab Zack",},header: { hasMediaAttachment: true,...(await prepareWAMessageMedia({ image : { url: zack } }, { upload: conn.waUploadToServer }, {quoted: m}))},
-                    contextInfo: {
-                        mentionedJid: [m.sender],
-                        isForwarded: false,
-                    },nativeFlowMessage: { buttons: [
+    // Send fake reply message with serial number
+    const sn = '*جـاًر تـجـهيز الـقـائـمـه🛰️...*'; // replace with the actual serial number
+    conn.fakeReply(m.chat, sn, '0@s.whatsapp.net', 'مرحبا بك👋🏻, في بوت باتشيرا', 'status@broadcast');
 
+    // Prepare the image
+    var joanimiimg = await prepareWAMessageMedia({ image: { url: 'https://telegra.ph/file/9ea7c13e92000839267ab.jpg' } }, { upload: conn.waUploadToServer });
 
+    // Create the interactive message with the image
+    const interactiveMessage = {
+        header: {
+            title: `*﹝❒═════﹝🍷﹞═════❒﹞*\n\n *ارحبوو ¦🍷『 ${m.pushName}』*\n * اسم البوت: بوت باتشيرا¦🍷*\n *اسم المطور: ابوهايف:♡¦🍷*\n *🍷¦وَنَجّنَا بِرَحْمَتِكَ مِنَ القوم الكافرين*\n`,
+            hasMediaAttachment: true,
+            imageMessage: joanimiimg.imageMessage,
+        },
+        body: {
+            text: ' *`افتح القائمة بواسطه الزر`🔘*\n\n*﹝❒═════﹝🍷﹞═════❒﹞*\n\n',
+        },
+        footer: { text: `تم صنع هذا البوت بواسطه ابوهايف:♡ يمنع سب البوت والبوت يعمل فقط في المجموعات وشكرا لك علي استخدام البوت \n\n\n© Bot by ابوهايف بكل مكان`.trim() },
+        nativeFlowMessage: {
+            buttons: [
+                {
+                    name: 'single_select',
+                    buttonParamsJson: JSON.stringify({
+                        title: '🍷اخـتر القـسـم🍷',
+                        sections: [
                             {
-                                name: 'single_select',
-                                buttonParamsJson: JSON.stringify({
-                                    title: '⌈🛡╎الــقــوائـــم╎🛡⌋',
-                                    sections: [
-                                        {
-                                            title: 'مــرحـ🛡ـبــا بــك فـي مــ☑هــام فلاش بـ🤖ـوت',
-                                            highlight_label: 'بعبص براحتك في البوت يا برو 🤖',
-                                            rows: [
-                                                {
-                                                    header: 'الــقـ👑ـســم الـاول',
-                                                    title: 'استدعاء_قسم_الاعضاء #الاعضاء',
-                                                    description: '',
-                                                    id: '.ق1'
-                                                },
-                                                {
-                                                    header: 'الــقـ👨🏻‍💻ـســم الــثــانــي',
-                                                    title: 'استدعاء_قسم_المشرفين #المشرفين',
-                                                    description: '',
-                                                    id: '.ق10'
-                                                },
-                                                {
-                                                    header: 'الــقـ🕋ـســم الــثــالــث',
-                                                    title: 'استدعاء_قسم_الدين #الدين',
-                                                    description: '',
-                                                    id: '.ق2'
-                                                },
-                                                {
-                                                    header: 'الــقـ👑ـســم الــرابــع',
-                                                    title: 'استدعاء_قسم_المطور #المطور',
-                                                    description: '',
-                                                    id: '.ق3'
-                                                },
-                                                {
-                                                    header: 'الــقـ🛡ـســم الــخــامــس',
-                                                    title: 'استدعاء_قسم_التنزيلات #التنزيلات',
-                                                    description: '',
-                                                    id: '.ق4'
-                                                },
-                                                {
-                                                    header: 'الــقـ🕹ـســم الــســادس',
-                                                    title: 'استدعاء_قسم_الالعاب #الالعاب',
-                                                    description: '',
-                                                    id: '.ق5'
-                                                },
-                                                {
-                                                    header: 'الــقـ🌀ـســم الــســابــع',
-                                                    title: 'استدعاء_قسم_التحويلات #التحويلات',
-                                                    description: '',
-                                                    id: '.ق6'
-                                                },
-                                                {
-                                                    header: 'الــقـ🤖ـســم الــتــاســع',
-                                                    title: 'استدعاء_قسم_الذكاء #الذكاء',
-                                                    description: '',
-                                                    id: '.ق7'
-                                                },
-                                                {
-                                                    header: 'الــقـ🚨ـســم الــعــاشــر',
-                                                    title: 'استدعاء_قسم_الدعم #الدعم',
-                                                    description: '',
-                                                    id: '.ق8'
-                                                },
-                                                {
-                                                    header: 'الــقـ🔍ـســم �لــحــاديــة عــشــر',
-                                                    title: 'استدعاء_قسم_ابحث #البحث',
-                                                    description: '',
-                                                    id: '.ق11'
-                                               }
-                                            ]
-                                        }
-                                    ]
-                                }),
-                  messageParamsJson: ''
-                     },
-                     {
-               name: "cta_url",
-               buttonParamsJson: '{"display_text":"⌈📲╎قـنـاة الــبــوت╎📲⌋","url":"https://whatsapp.com/channel/0029VaoUBmSKmCPIIiEatx1H","merchant_url":"https://whatsapp.com/channel/0029VaoUBmSKmCPIIiEatx1H"}'
+                                title: 'قسم الاوامر',
+                                highlight_label: 'ابوهايف:♡',
+                                rows: [
+                                    {
+                                        header: 'يعطيك قسم اوامر الجروب🗣️',
+                                        title: 'قـسـم الجـروبـات👥✬⃝',
+                                        description: '',
+                                        id: '.قسم-الجروبات'
+                                    },
+                                    {
+                                        header: 'يعطيك قسم اوامر التنزيلات و البحث📤',
+                                        title: 'قـسـم الـتنـزيلات📥✬⃝',
+                                        description: '',
+                                        id: '.قسم-التنزيلات'
+                                    },
+                                    {
+                                        header: 'يعطيك قسم اوامر الترفيه🛸',
+                                        title: 'قـسـم الـتـرفيـه🎮✬⃝',
+                                        description: '',
+                                        id: '.قسم-الترفيه'
+                                    },
+                                    {
+                                        header: 'يعطيك قسم اوامر التحويل🃏',
+                                        title: 'قـسـم الـتحـويل🪄✬⃝',
+                                        description: '',
+                                        id: '.قسم-التحويل'
+                                    },
+                                    {
+                                        header: 'يعطيك قسم اوامر الدين والأسلام👳🏻‍♂️',
+                                        title: 'قـسـم الـديـني✨✬⃝',
+                                        description: '',
+                                        id: '.قسم-ديني'
+                                    },
+                                    {
+                                        header: 'يعطيك قسم اوامر المطور⚙️',
+                                        title: ' قـسـم الـمـطور🙎🏻✬⃝',
+                                        description: '',
+                                        id: '.قسم-المطور'
+                                    },
+                                    {
+                                        header: 'يعطيك قسم اوامر الألقاب🖊️',
+                                        title: ' قـسـم الألقاب📕✬⃝',
+                                        description: '',
+                                        id: '.القاب-الاعضاء'
+                                    },
+                                    {
+                                        header: '🍷يعطيك كل الاوامر🍷',
+                                        title: '🍷كل الاوامر🍷',
+                                        description: '',
+                                        id: '.كل-الاوامر'
+                                    }
+                                ]
                             }
                         ]
-                    }
+                    }),
+                    messageParamsJson: ''
+                },
+                {
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "قنـاة الـواتـساب📣",
+                        url: "https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g",
+                        merchant_url: "https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g"
+                    })
+                },
+                {
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "مشاهده البوت🎦",
+                        url: "https://youtu.be/-XdmFcY3zQI?si=bzJfbQGwjUk-4rZO",
+                        merchant_url: "https://youtu.be/-XdmFcY3zQI?si=bzJfbQGwjUk-4rZO"
+                    })
+                },
+                {
+                    name: 'single_select',
+                    buttonParamsJson: JSON.stringify({
+                        title: '🔎معلومات البوت🔎',
+                        sections: [
+                            {
+                                title: '📜معلومات عن البوت📜',
+                                highlight_label: 'By🍷ابوهايف:♡',
+                                rows: [
+                                    {
+                                        header: 'صانع البوت👤',
+                                        title: 'الـمطور👾',
+                                        description: '',
+                                        id: '.المطور'
+                                    },
+                                    {
+                                        header: 'خصوصيه استخدام البوت❔❕',
+                                        title: 'الاسـتخدام📜',
+                                        description: '',
+                                        id: '.قوانين'
+                                    },
+                                    {
+                                        header: 'ابلاغ او ارسال رساله للمطور💭',
+                                        title: 'طـلـب ابـلاغ📨',
+                                        description: '',
+                                        id: '.بلاغ'
+                                    },
+                                    {
+                                        header: 'تقيم البوت⭐',
+                                        title: 'طـلب تقـيم🌟',
+                                        description: '',
+                                        id: '.تقيم'
+                                    }
+                                ]
+                            }
+                        ]
+                    }),
+                    messageParamsJson: ''
                 }
-            }
+            ]
         }
-    }, {});
+    };
+
+    // Generate the message
+    let msg = generateWAMessageFromContent(m.chat, {
+        viewOnceMessage: {
+            message: {
+                interactiveMessage,
+            },
+        },
+    }, { userJid: conn.user.jid, quoted: m });
+
+    // Send the message
+    conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
 }
 
 handler.help = ['info'];
 handler.tags = ['main'];
-handler.command = ['menu', 'مهام', 'اوامر','الاوامر','قائمة','القائمة']
+handler.command = ['أوامر', 'اوامر', 'الاوامر', 'ألاوامر', 'menu', 'Menu'];
 
 export default handler;
