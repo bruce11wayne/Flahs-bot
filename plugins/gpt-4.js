@@ -19,15 +19,15 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
       m.chat, 
       replyText, 
       author, 
-      'https://envs.sh/wHc.jpg', 
+      'https://qu.ax/ORrM.jpg', 
       [['الــمــطـور', `.المطور`]], 
       null, 
-      [['قــنـاة الــبــوت', `https://whatsapp.com/channel/0029ValRCUIFi8xmK9xBOr0I`]], 
+      [['قــنـاة الــبــوت', `https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g`]], 
       m
     );
   } catch (error) {
     console.error(error);
-    m.reply('*مرحبا ضع سؤالك يا اخي 🤡*');
+    m.reply('*هلا انا شات جي بي تي قلي سؤالك*');
   }
 };
 
