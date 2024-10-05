@@ -1,97 +1,119 @@
-import fetch from 'node-fetch';
+import fs from 'fs'
+import fetch from 'node-fetch'
+import { xpRange } from '../lib/levelling.js'
+const { levelling } = '../lib/levelling.js'
+import PhoneNumber from 'awesome-phonenumber'
+import { promises } from 'fs'
+import { join } from 'path'
+let handler = async (m, { conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems }) => {
+try {
+let vn = './Menu2.jpg'
+let pp = imagen4
+let img = await(await fetch('https://telegra.ph/.')).buffer()
+let d = new Date(new Date + 3600000)
+let locale = 'ar'
+let week = d.toLocaleDateString(locale, { weekday: 'long' })
+let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+let _uptime = process.uptime() * 1000
+let uptime = clockString(_uptime)
+let user = global.db.data.users[m.sender]
+let { money, joincount } = global.db.data.users[m.sender]
+let { exp, limit, level, role } = global.db.data.users[m.sender]
+let { min, xp, max } = xpRange(level, global.multiplier)
+let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length 
+let more = String.fromCharCode(8206)
+let readMore = more.repeat(850)   
+let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
+let str = `⎔⋅• ━ ╼╃ ⌬〔﷽〕⌬ ╄╾ ━ •⋅⎔
+> 𝐔𝐧𝐨𝐡𝐚𝐧𝐚﹝🧭﹞𝐁𝐎𝐓
+> 〔قـسـم الـبـحــث┊ ˼‏ 🔍˹ 〕↶
+*⎔⋅ ╼╃ ⊰ •﹝⚜️﹞• ⊱ ╄╾ ⋅⎔*
+            *اونوهانا بــ🤖ــوت*
+*⎔⋅ ╼╃ ⊰ •﹝⚜️﹞• ⊱ ╄╾ ⋅⎔*
+> 🔍 .ويكيبيديا
+> 🔍 .شغل
+> 🔍 .اغنيه
+> 🔍 .فيديو
+> 🔍 .بحث
+> 🔍 .كلمات-اغنيه
+> 🔍 .اسم_الاغنية
+> 🔍 .ابحاث
+> 🔍 .صوره
+> 🔍 .تصفح
+> 🔍 .تطبيق
+*⎔⋅ ╼╃ ⊰ •﹝⚜️﹞• ⊱ ╄╾ ⋅⎔*
+*~⌬ تــ✍️︎ــوقــيــع ↡~*🖋
+*𝐔𝐧𝐨𝐡𝐚𝐧𝐚﹝🧭﹞𝐁𝐎𝐓*
+*⎔⋅ ╼╃ ⊰ •﹝⚜️﹞• ⊱ ╄╾ ⋅⎔*`.trim()
+   const _0x3c7cab = _0x5a1d;
 
+        function _0x5a1d(_0x1b92fa, _0x42ca62) {
+            const _0x5a1d39 = _0x42ca();
+            _0x5a1d = function (_0x28d0f5, _0x342e36) {
+                _0x28d0f5 = _0x28d0f5 - 0x0;
+                let _0x4abc25 = _0x5a1d39[_0x28d0f5];
+                return _0x4abc25;
+            };
+            return _0x5a1d(_0x1b92fa, _0x42ca62);
+        }
 
+        function _0x42ca() {
+            const _0xe1e20e = ['2409147cMTtvV', '70SxKSwY', 'trim', '2708027tOnEUS', '831853GQAjyu', '6ZrUjVF', 'reception', '406070MLYaeB', 'https://chat.whatsapp.com/Ilr00RrPBu95bxkxQ5rZbs', '4YbGMkZ', '840496IPJeXP', '322835aPaRGc', 'VIDEO', '3639410cLSfPv', 'sender', '9LtUyCF'];
+            _0x42ca = function () {
+                return _0xe1e20e;
+            };
+            return _0x42ca();
+        }(function (_0x2979d9, _0x233f8f) {
+            const _0x32315e = _0x5a1d;
+            const _0x3b1890 = _0x2979d9();
+            while (!![]) {
+                try {
+                    const _0x2cc4d6 = parseInt(_0x32315e(0x5)) / 0x1 + parseInt(_0x32315e(0x1)) / 0x2 + -parseInt(_0x32315e(0xa)) / 0x3 * (parseInt(_0x32315e(0x3)) / 0x4) + parseInt(_0x32315e(0x7)) / 0x5 + -parseInt(_0x32315e(0xf)) / 0x6 * (parseInt(_0x32315e(0xd)) / 0x7) + parseInt(_0x32315e(0x4)) / 0x8 * (-parseInt(_0x32315e(0x9)) / 0x9) + -parseInt(_0x32315e(0xb)) / 0xa * (-parseInt(_0x32315e(0xe)) / 0xb);
+                    if (_0x2cc4d6 === _0x233f8f) {
+                        break;
+                    } else {
+                        _0x3b1890['push'](_0x3b1890['shift']());
+                    }
+                } catch (_0x3284ad) {
+                    _0x3b1890['push'](_0x3b1890['shift']());
+                }
+            }
+        }(_0x42ca, 0x772cd));
+        let buttonMessage = {
+            'image': pp,
+            'caption': str[_0x3c7cab(0xc)](),
+            'mentions': [m[_0x3c7cab(0x8)]],
+            'footer': '' + wm,
+            'headerType': 0x4,
+            'contextInfo': {
+                'mentionedJid': [m['sender']],
+                'externalAdReply': {
+                    'showAdAttribution': !![],
+                    'mediaType': _0x3c7cab(0x6),
+                    'mediaUrl': null,
+                    'title': _0x3c7cab(0x0),
+                    'body': null,
+                    'thumbnail': img,
+                    'sourceUrl': _0x3c7cab(0x2)
+                }
+            }
+        };
+        conn.sendMessage(m.chat, buttonMessage, {
+            quoted: m
+        })
 
-
-const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems}) => {
-  const datas = global
-  const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
-  const tradutor = _translate.plugins.menu_audios
-
-  try {
-    const pp = imagen4;
-    // let vn = './media/menu.mp3'
-    const img = './Menu2.jpg';
-    const d = new Date(new Date + 3600000);
-    const locale = 'ar';
-    const week = d.toLocaleDateString(locale, {weekday: 'long'});
-    const date = d.toLocaleDateString(locale, {day: 'numeric', month: 'long', year: 'numeric'});
-    const _uptime = process.uptime() * 1000;
-    const uptime = clockString(_uptime);
-    const user = global.db.data.users[m.sender];
-    const {money, joincount} = global.db.data.users[m.sender];
-    const {exp, limit, level, role} = global.db.data.users[m.sender];
-    const rtotalreg = Object.values(global.db.data.users).filter((user) => user.registered == true).length;
-    const more = String.fromCharCode(8206);
-    const readMore = more.repeat(850);
-    const taguser = '@' + m.sender.split('@s.whatsapp.net')[0];
-    const doc = ['pdf', 'zip', 'vnd.openxmlformats-officedocument.presentationml.presentation', 'vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'vnd.openxmlformats-officedocument.wordprocessingml.document'];
-    const document = doc[Math.floor(Math.random() * doc.length)];
-    const str = `
-*﹝❒═════﹝🍷﹞═════❒﹞*
-*▫️اهلا, ${taguser}*
-*▫️رقم اصدار البوت: v1*
-*▫️🍷اسم البوت: باتشيرا*
-*▫️اســم الـمطور : ابوهايف:♡*
-*▫️اليك القائمه يحب*  ${taguser}
-*▫️ حط قبل كل امر  ( . )*
-*▫️هذا البوت صنع بواسطه ابوهايف:♡*
-*﹝❒═════﹝🍷﹞═════❒﹞*
-❍↜ *قـسـم الجـروبـات*👥✬⃝
-*﹝❒═════﹝🍷﹞═════❒﹞*
-> *. القاب-الاعضاء*
-> *. طرد*
-> *. طرد-الكل*
-> *. ضيف*
-> *. ترقيه*
-> *. اعفاء*
-> *. حذف*
-> *. منشن*
-> *. مخفي*
-> *. المشرفين*
-> *. لمنشن*
-> *. بروفايل*
-> *. الجروب*
-> *. دعوه*
-> *. تغيير_اللينك*
-> *. لفل*
-> *. جروب*
-> *. الترحيب*
-> *. المغادره*
-> *. ايات*
-> *. جروب قفل*
-> *. جروب فتح*
-> *. خط*
-> *. توب*
-> *. لينك*
-> *. يومي*
-> *. الماس*
-> *. ترتيب_البنك*
-> *. شراء*
-> *. هجوم*
-> *. التوقيت*
-*﹝❒═════﹝🍷﹞═════❒﹞*`.trim();
-    if (m.isGroup) {
-      // await conn.sendFile(m.chat, vn, 'menu.mp3', null, m, true, { type: 'audioMessage', ptt: true})
-      const fkontak2 = {'key': {'participants': '0@s.whatsapp.net', 'remoteJid': 'status@broadcast', 'fromMe': false, 'id': 'Halo'}, 'message': {'contactMessage': {'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}, 'participant': '0@s.whatsapp.net'};
-      conn.sendMessage(m.chat, {image: pp, caption: str.trim(), mentions: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net')}, {quoted: fkontak2});
-    } else {
-      // await conn.sendFile(m.chat, vn, 'menu.mp3', null, m, true, { type: 'audioMessage', ptt: true})
-      const fkontak2 = {'key': {'participants': '0@s.whatsapp.net', 'remoteJid': 'status@broadcast', 'fromMe': false, 'id': 'Halo'}, 'message': {'contactMessage': {'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}, 'participant': '0@s.whatsapp.net'};
-      conn.sendMessage(m.chat, {image: pp, caption: str.trim(), mentions: [...str.matchAll(/@([0-9]{5,16}|0)/g)].map((v) => v[1] + '@s.whatsapp.net')}, {quoted: fkontak2});
+    } catch {
+        conn.reply(m.chat, '[❗خطاء❗]', m)
     }
-  } catch {
-    conn.reply(m.chat, tradutor.texto2, m);
-  }
-};
-handler.command = /^(قسم-الجروبات|keyaudio|krk|jrn|jdj|bjjk|jdkn|memuaudio|audios|keyaudio|keyaudios)$/i;
-handler.exp = 50;
-handler.fail = null;
-export default handler;
-function clockString(ms) {
-  const h = isNaN(ms) ? '--' : Math.floor(ms / 3600000);
-  const m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60;
-  const s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60;
-  return [h, m, s].map((v) => v.toString().padStart(2, 0)).join(':');
 }
+handler.command = /^(ق 11|قسم البحث|ق11|ق_11)$/i;
+handler.exp = 20
+handler.fail = null
+export default handler
+
+function clockString(ms) {
+    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+    let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+    let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+    return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+                                                                                                                                                                                                                                                 }
