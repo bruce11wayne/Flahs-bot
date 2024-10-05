@@ -2,10 +2,11 @@ import fs from 'fs';
 const timeout = 60000;
 const poin = 500;
 const handler = async (m, {conn, usedPrefix}) => {
+      await conn.sendMessage(m.chat, { react: { text: '❓', key: m.key } });
   conn.tekateki = conn.tekateki ? conn.tekateki : {};
   const id = m.chat;
   if (id in conn.tekateki) {
-    conn.reply(m.chat, '*❐┃في سؤال هنا يــا بــاكــا┃❌ ❯*', conn.tekateki[id][0]);
+    conn.reply(m.chat, 'لا تزال هناك سؤال لم تتم الإجابة عليها في هذه الدردشة', conn.tekateki[id][0]);
     throw false;
   }
   const tekateki = JSON.parse(fs.readFileSync(`./src/game/acertijo.json`));
@@ -13,20 +14,16 @@ const handler = async (m, {conn, usedPrefix}) => {
   const _clue = json.response;
   const clue = _clue.replace(/[A-Za-z]/g, '_');
   const caption = `
-ⷮ > ˼⚡˹↜ الــســؤال يــا روحــي↶
-> الــســؤال↜ ˼${json.question}˹ 
-╮───────────────────⟢ـ
-┆❐↞┇الـوقـت⏳↞ ⌊${(timeout / 1000).toFixed(2)} ثانية⌉
-┆❐↞┇الـجـائـزة💰↞ ⌊${poin} دولار⌉
-┆❐↞┇المطور 🤖↞ ⌊نــاروتـو - عــراب زاك⌉
-╯───────────────────⟢ـ
-> فلاش بــوت
+ⷮ *${json.question}*
+*❐↞┇وقت:* ${(timeout / 1000).toFixed(2)} ثواني
+*❐↞┇الجوائز:* +${poin} Exp
+*『𝚄𝚗𝚘𝚑𝚊𝚗𝚊╵🧭╷𝙱𝙾𝚃』*
 `.trim();
   conn.tekateki[id] = [
     await conn.reply(m.chat, caption, m), json,
     poin,
     setTimeout(async () => {
-      if (conn.tekateki[id]) await conn.reply(m.chat, `*❮ ⌛┇انتهي الوقت┇⌛❯*\n *❐↞┇الاجـابـة✅↞ ${json.response}┇*`, conn.tekateki[id][0]);
+      if (conn.tekateki[id]) await conn.reply(m.chat, `انتهى الوقت!\n*إجابة:* ${json.response}`, conn.tekateki[id][0]);
       delete conn.tekateki[id];
     }, timeout)];
 };
