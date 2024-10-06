@@ -5,24 +5,28 @@ import axios from 'axios'
 import { youtubedl, youtubedlv2 } from '@bochilteam/scraper'
 let handler = async (m, { conn, command, args, text, usedPrefix }) => {
 let q, v, yt, dl_url, ttl, size, lolhuman, lolh, n, n2, n3, n4, cap, qu, currentQuality   
-if (!text) throw `*🤔 ما الذي تبحث عنه؟ 🤔*\n*يرجى إدخال اسم الأغنية*\n\n*مثال:*\n#play phonk`
+if (!text) throw `*🤔 ما الذي تبحث عنه؟ 🤔*\n*يرجى إدخال اسم الأغنية*\n\n*مثال:*\n#هزيم الرعد`
 try {
 const yt_play = await search(args.join(" "))
 let additionalText = ''
-if (command === 'اغنية') {
+if (command === 'اغنيه') {
 additionalText = 'audio 🔊'
-} else if (command === 'فديو') {
+} else if (command === 'فيديو') {
 additionalText = 'video 🎥'}
 conn.sendFile(m.chat, yt_play[0].thumbnail, 'thumbnail.jpg', `
-*${yt_play[0].title}*
-*⇄ㅤ     ◁   ㅤ  ❚❚ㅤ     ▷ㅤ     ↻*
-
-*⏰ المدة:* ${secondString(yt_play[0].duration.seconds)}
-*👉🏻 انتظر لحظة حتى أرسل ${additionalText}*
-*انت مسؤل عن ذنوب اغانيك*
-*𝐍𝐀𝐑𝐔𝐓𝐎&𝐙𝐀𝐂𝐊*
+◉——⌈🔊 YOUTUBE PLAY 🔊⌋——◉\n
+❏ 📌 *Titulo:* ${yt_play[0].title}
+❏ 📆 *Publicado:* ${yt_play[0].ago}
+❏ ⌚ *Duracion:* ${secondString(yt_play[0].duration.seconds)}
+❏ 👀 *Vistas:* ${`${MilesNumber(yt_play[0].views)}`}
+❏ 👤 *Autor:* ${yt_play[0].author.name}
+❏ ⏯️ *Canal:* ${yt_play[0].author.url}
+❏ 🆔 *ID:* ${yt_play[0].videoId}
+❏ 🪬 *Tipo:* ${yt_play[0].type}
+❏ 🔗 *Link:* ${yt_play[0].url}\
+By bruce ${additionalText}
 `.trim(), m)
-if (command == 'اغنية') {	
+if (command == 'اغنيه') {	
 try {
 let q = '128kbps'
 let v = yt_play[0].url
@@ -103,7 +107,7 @@ renderLargerThumbnail: true
 } catch {
 }}}}}
 }  
-if (command == 'فديو') {
+if (command == 'فيديو') {
 try {
 let qu = '480'
 let q = qu + 'p'
@@ -112,7 +116,7 @@ const yt = await youtubedl(v).catch(async _ => await youtubedlv2(v))
 const dl_url = await yt.video[q].download()
 const ttl = await yt.title
 const size = await yt.video[q].fileSizeH
-await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*🔰 ها هو الفيديو*\n*🔥 العنوان: ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
+await await conn.sendMessage(m.chat, { video: { url: dl_url }, fileName: `${ttl}.mp4`, mimetype: 'video/mp4', caption: `*🎞️ ها هو الفيديو*\n🔥 العنوان: ${ttl}`, thumbnail: await fetch(yt.thumbnail) }, { quoted: m })
 } catch {   
 try {  
 let mediaa = await ytMp4(yt_play[0].url)
@@ -125,13 +129,13 @@ let n = lolh.result.title || 'error'
 let n2 = lolh.result.link
 let n3 = lolh.result.size
 let n4 = lolh.result.thumbnail
-await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*🔰 ها هو الفيديو*\n*🔥 العنوان: ${n}`, thumbnail: await fetch(n4) }, { quoted: m })
+await conn.sendMessage(m.chat, { video: { url: n2 }, fileName: `${n}.mp4`, mimetype: 'video/mp4', caption: `*🎞️ ها هو الفيديو*\n🔥 العنوان: ${n}`, thumbnail: await fetch(n4) }, { quoted: m })
 } catch {
 }}}    
 }} catch {
 }
 }
-handler.command = ['فديو' ,'اغنية']
+handler.command = ['فيديو' ,'اغنيه']
 handler.exp = 0
 export default handler
 
