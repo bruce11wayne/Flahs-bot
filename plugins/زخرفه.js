@@ -1,42 +1,25 @@
-//هارلي بيمسي عليكو ويقولكم كل سنة وانتو طيبين مقدما بمناسبة عيد الاضحي ياحب🐐
-//حقوق قناة هارلي كودنج 𝐻𝐴𝑅𝐿𝐸𝑌 ⚡ 𝐶𝛩𝐷𝐼𝑁𝐺  https://whatsapp.com/channel/0029VaXddtu0lwgiREisx82C
-// تغير المصدر اذبحك مثل خروف العيد 🐐 🔪
-//بس كده استمتعو بل الامر ⚡
-function handler(m, { text }) {
-  let teks = text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text
-  m.reply(teks.replace(/[a-z]/gi, v => {
-      return { 
-          'a': '𝐀',
-          'b': '𝐁',
-          'c': '𝐂',
-          'd': '𝐃',
-          'e': '𝐄',
-          'f': '𝐅',
-          'g': '𝐆',
-          'h': '𝐇',
-          'i': '𝐈',
-          'j': '𝐉',
-          'k': '𝐊',
-          'l': '𝐋',
-          'm': '𝐌',
-          'n': '𝐍',
-          'o': '𝐎',
-          'p': '𝐏',
-          'q': '𝐐',
-          'r': '𝐑',
-          's': '𝐒',
-          't': '𝐓',
-          'u': '𝐔',
-          'v': '𝐕',
-          'w': '𝐖',
-          'x': '𝐗',
-          'y': '𝐘',
-          'z': '𝐙', 
-      }[v.toLowerCase()] || v
-  }))
+import fetch from 'node-fetch'
+import { JSDOM } from 'jsdom'
+let handler = async (m, { conn, text }) => {
+    await conn.sendMessage(m.chat, { react: { text: '💱', key: m.key } });
+conn.reply(m.chat, Object.entries(await stylizeText(text ? text : m.quoted && m.quoted.text ? m.quoted.text : m.text)).map(([name, value]) => `*${name}*\n${value}`).join`\n\n`, m)
 }
-handler.help = ['H A R L E Y']
-handler.tags = ['H A R L E Y']
-handler.command =  /^(زخرفة)$/i
-
+handler.help = ['style'].map(v => v + ' <text>')
+handler.tags = ['tools']
+handler.command = /^(زخرفه|زخرفة?)$/i
+handler.exp = 0
 export default handler
+
+async function stylizeText(text) {
+let res = await fetch('http://qaz.wtf/u/convert.cgi?text=' + encodeURIComponent(text))
+let html = await res.text()
+let dom = new JSDOM(html)
+let table = dom.window.document.querySelector('table').children[0].children
+let obj = {}
+for (let tr of table) {
+let name = tr.querySelector('.aname').innerHTML
+let content = tr.children[1].textContent.replace(/^\n/, '').replace(/\n$/, '')
+obj[name + (obj[name] ? ' Reversed' : '')] = content
+}
+return obj
+}
