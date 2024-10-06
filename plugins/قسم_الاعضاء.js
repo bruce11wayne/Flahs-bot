@@ -7,9 +7,9 @@ import { promises } from 'fs'
 import { join } from 'path'
 let handler = async (m, { conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems }) => {
 try {
-let pp = imagen4;
-let vn = './media/menu.mp3'
-let img = 'https://telegra.ph/file/9ea7c13e92000839267ab.jpg';
+let vn = 'Menu.png'
+let pp = imagen4
+let img = await(await fetch('https://qu.ax/ORrM.jpg')).buffer()
 let d = new Date(new Date + 3600000)
 let locale = 'ar'
 let week = d.toLocaleDateString(locale, { weekday: 'long' })
