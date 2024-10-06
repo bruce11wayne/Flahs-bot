@@ -7,7 +7,7 @@ import { promises } from 'fs'
 import { join } from 'path'
 let handler = async (m, { conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems }) => {
 try {
-let vn = './Menu2.jpg'
+let vn = 'Menu2.jpg'
 let pp = imagen4
 let img = await(await fetch('https://qu.ax/ORrM.jpg')).buffer()
 let d = new Date(new Date + 3600000)
