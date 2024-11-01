@@ -1,9 +1,13 @@
+function clockString(ms) {
+    let h = Math.floor(ms / 3600000);
     let m = Math.floor(ms % 3600000 / 60000);
     let s = Math.floor(ms % 60000 / 1000);
     return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
 }
+
 import pkg from '@whiskeysockets/baileys';
 const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
+
 const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems}) => {
     let d = new Date(new Date + 3600000);
     let locale = 'ar';
@@ -24,7 +28,7 @@ const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, is
   const zack = 'https://qu.ax/ORrM.jpg'
   const mentionId = m.key.participant || m.key.remoteJid;
  
-conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { header: { title: `harley`}, body: { text: `˼🧭˹↜ مـࢪحـبـا بـك/ي @${mentionId.split('@')[0]}
+conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { header: { title: `harley`}, body: { text: `˼⚡˹↜ مـࢪحـبـا بـك/ي @${mentionId.split('@')[0]}
 > ˼🪪˹↜ مــعــلــومــاتــك ↶
 ╮───────────────────⟢ـ
 ┆⚡↜ بـريـمـيـوم↞⌊ ${user.premiumTime > 0 ? 'مــمـ🔱ـيز' : (isPrems ? 'مــمـ🔱ـيز' : 'عــ🍁ــادي') || ''} ⌉
@@ -35,23 +39,25 @@ conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { 
 ╯───────────────────⟢ـ
 > ˼🤖˹↜ الــبــوت↶
 ╮───────────────────⟢ـ
-┆⚙️ ↜اسـم الـبـوت↶﹝𝐔𝐧𝐨𝐡𝐚𝐧𝐚﹞
-┆🪄 ↜الـمـطـور ↶﹝BRUCE WAYNE﹞
+┆⚙️ ↜اسـم الـبـوت↶﹝𝐅𝐋𝐀𝐒𝐇﹞
+┆🪄 ↜الـمـطـور ↶﹝𝐅𝐋𝐀𝐒𝐇_𝐓𝐄𝐀𝐌﹞
 ┆📌 ↜الـتـشـغـيـل ↶﹝${uptime}﹞
 ┆🔖 ↜الــمــســتـخـدمـيـن ↶﹝${rtotalreg}﹞
 ╯───────────────────⟢ـ
-> 𝐔𝐧𝐨𝐡𝐚𝐧𝐚﹝🧭﹞𝐁𝐎𝐓`,subtitle: "BRUCE WAYNE",},header: { hasMediaAttachment: true,...(await prepareWAMessageMedia({ image : { url: zack } }, { upload: conn.waUploadToServer }, {quoted: m}))},
+> © 𝐍𝐀𝐑𝐔𝐓𝐎 & 𝐙𝐀𝐂𝐊 2025`,subtitle: "Araab Zack",},header: { hasMediaAttachment: true,...(await prepareWAMessageMedia({ image : { url: zack } }, { upload: conn.waUploadToServer }, {quoted: m}))},
                     contextInfo: {
                         mentionedJid: [m.sender],
                         isForwarded: false,
                     },nativeFlowMessage: { buttons: [
-                                                          {
+
+
+                            {
                                 name: 'single_select',
                                 buttonParamsJson: JSON.stringify({
                                     title: '⌈🛡╎الــقــوائـــم╎🛡⌋',
                                     sections: [
                                         {
-                                            title: 'مــرحـ🛡ـبــا بــك فـي مــ☑هــام اونوهانا بـ🤖ـوت',
+                                            title: 'ممــرحـ🛡ـبــا بــك فـي مــ☑هــام اونوهانا بـ🤖ـوت',
                                             highlight_label: 'خذ راحتك 🫦',
                                             rows: [
                                                 {
@@ -125,11 +131,15 @@ conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { 
                buttonParamsJson: '{"display_text":"⌈📲╎قـنـاة الــبــوت╎📲⌋","url":"https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g","merchant_url":"https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g"}'
                             }
                         ]
-        function _0x42ca(
-                  }
+                    }
+                }
+            }
+        }
     }, {});
-                                         }
-                                                                               handler.help = ['info'];
+}
+
+handler.help = ['info'];
 handler.tags = ['main'];
 handler.command = ['menu', 'مهام', 'اوامر','الاوامر','قائمة','القائمة']
-                                                                               export default handler;
+
+export default handler;
