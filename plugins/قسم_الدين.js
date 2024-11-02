@@ -65,7 +65,7 @@ let handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPr
 
 handler.help = ['main']
 handler.tags = ['group']
-handler.command = ['ق10'] 
+handler.command = ['ق2'] 
 
 export default handler
 
