@@ -36,8 +36,8 @@ let handler = async function (message, { conn, text, command, isAdmin }) {
                     replyText += `*『${nickname.bk9}』* - @${nickname.userId}\n`;
                     mentions.push(userId);
                 }
-                const imageUrl = 'https://telegra.ph/file/0e611ef0f5898f84e06ff.jpg';
-                await conn.sendMessage(message.chat, { image: { url: imageUrl }, caption: replyText + '\n 𝐁𝐘┋❥ 𝐓𝐀𝐑𝐁𝐎𝐎☞𝐁𝐎𝐓┋', mentions });
+                const imageUrl = 'https://qu.ax/ORrM.jpg';
+                await conn.sendMessage(message.chat, { image: { url: imageUrl }, caption: replyText + '\n 𝙱𝚈┋❥ 𝚄𝙽𝙾𝙷𝙰𝙽𝙰☞𝙱𝙾𝚃┋', mentions });
             }
         } else if (command === 'تسجيل') {
             if (!message.isGroup) {
