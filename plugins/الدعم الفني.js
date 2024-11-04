@@ -17,7 +17,4 @@ handler.help = ['gpflash']
 handler.tags = ['main']
 handler.command = ['group', 'support','الدعم','دعم']
 
-await conn.sendMessage(m.chat, { react: { text: '🚨', key: m.key } })
-    conn.sendFile(m.chat, 'https://qu.ax/ORrM.jpg', 'image.jpg', message, m);
-};
 export default handler
