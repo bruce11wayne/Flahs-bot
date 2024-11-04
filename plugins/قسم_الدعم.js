@@ -42,6 +42,7 @@ let handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPr
 *⎔⋅ ╼╃ ⊰ •﹝🔆﹞• ⊱ ╄╾ ⋅⎔*
 > 🚨 .ابلاغ
 > 🚨 .المطور
+> 🚨 .الدعم
 *⎔⋅ ╼╃ ⊰ •﹝🔆﹞• ⊱ ╄╾ ⋅⎔*
 *~⌬ تــ✍️︎ــوقــيــع ↡~*🖋
 *𝐔𝐧𝐨𝐡𝐚𝐧𝐚﹝🧭﹞𝐁𝐎𝐓*
