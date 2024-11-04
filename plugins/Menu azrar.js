@@ -46,8 +46,8 @@ conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { 
 ╯───────────────────⟢ـ
 > ˼🍷˹↜مـجـمـوعـات الـمـطـور↶
 ╮───────────────────⟢ـ
-┆🕋 ↜قـنـاة الـمـطـور الـديـنـيه ↶ ﹝https://whatsapp.com/channel/0029VaobATOJ93wRumZwCJ3i﹞
-┆🧣 ↜قـنـاة الــبــوت ↶ ﹝https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g﹞
+┆🕋 ↜قـنـاة الـمـطـور الـديـنـيه ↶ ﹝ https://whatsapp.com/channel/0029VaobATOJ93wRumZwCJ3i ﹞
+┆🧣 ↜قـنـاة الــبــوت ↶ ﹝ https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g ﹞
 ╯───────────────────⟢ـ
 > © 𝙱𝚁𝚄𝙲𝙴 & 𝚂𝚙𝚎𝚎𝚍𝚢 2025`,subtitle: "BRUCE WAYNE",},header: { hasMediaAttachment: true,...(await prepareWAMessageMedia({ image : { url: zack } }, { upload: conn.waUploadToServer }, {quoted: m}))},
                     contextInfo: {
