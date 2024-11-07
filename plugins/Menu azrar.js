@@ -1,150 +1,179 @@
+import { createHash } from 'crypto'
+import { canLevelUp, xpRange } from '../lib/levelling.js'
+import fetch from 'node-fetch'
+import fs from 'fs'
+const { levelling } = '../lib/levelling.js'
+import moment from 'moment-timezone'
+import { promises } from 'fs'
+import { join } from 'path'
+const time = moment.tz('Egypt').format('HH')
+let wib = moment.tz('Egypt').format('HH:mm:ss')
+//import db from '../lib/database.js'
+
+let handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems}) => {
+    let d = new Date(new Date + 3600000)
+    let locale = 'ar'
+    let week = d.toLocaleDateString(locale, { weekday: 'long' })
+    let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' })
+    let _uptime = process.uptime() * 1000
+    let uptime = clockString(_uptime)
+let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
+if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
+let videoUrl = 'https://telegra.ph/file/2e8338d1327f0dc89e36c.mp4';
+  let vn = './media/menu.mp3';
+  const user = global.db.data.users[m.sender];
+  const {money, joincount} = global.db.data.users[m.sender];
+  const {exp, limit, level, role} = 
+    global.db.data.users[m.sender];
+let { min, xp, max } = xpRange(user.level, global.multiplier)
+let username = conn.getName(who)
+let math = max - xp
+let sn = createHash('md5').update(who).digest('hex')
+let totalreg = Object.keys(global.db.data.users).length;
+let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length 
+let more = String.fromCharCode(8206)
+let readMore = more.repeat(900) 
+  const taguser = '@' +  m.sender.split('@s.whatsapp.net')[0];
+let str = `*⌬∙ • ──╾⊱﹝﷽﹞⊰╼── • ∙⌬*
+
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*❮ ◈┇قائمة اوامر┇𝐷𝐸𝐶𝛩◈❯*
+*❮ ◈┇عيوني يا↜ ${taguser}  ❯*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*⛩️𝐷𝐸𝐶𝛩_𝐵𝛩𝑇⛩️*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*「قـســم╎🏮╎القـروبــات」*
+
+*◞🏮◜╎.ابلاغ 』*
+*◞🏮◜╎.منشن 』*
+*◞🏮◜╎.مخفي 』*
+*◞🏮◜╎.المشرفين 』*
+*◞🏮◜╎.تدوير 』*
+*◞🏮◜╎.جروب قفل 』*
+*◞🏮◜╎.جروب فتح 』*
+*◞🏮◜╎.توب 』*
+*◞🏮◜╎.لفل 』*
+*◞🏮◜╎.انمي 』*
+*◞🏮◜╎.مستخدم 』*
+*◞🏮◜╎.رونالدو 』*
+*◞🏮◜╎.ميسي 』*
+*◞🏮◜╎.يومي 』*
+*◞🏮◜╎.هجوم 』*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*「قـسـم╎🍷╎الـمـشـرفـيـن」*
+
+*◞🍷◜╎.طرد 』*
+*◞🍷◜╎.ترقيه 』*
+*◞🍷◜╎.اعفاء 』*
+*◞🍷◜╎.حذف 』*
+*◞🍷◜╎.تسجيل 』*
+*◞🍷◜╎.حذف_لقب 』*
+*◞🍷◜╎.لقبه 』*
+*◞🍷◜╎.لقب 』*
+*◞🍷◜╎.الالقاب 』*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*「قـسـم╎🕋╎الـديــن」*
+
+*◞🕋◜╎.الله 』*
+*◞🕋◜╎.حديث 』*
+*◞🕋◜╎.ايات 』*
+*◞🕋◜╎.اذكار المساء 』*
+*◞🕋◜╎.اذكار الصباح 』*
+*◞🕋◜╎.أية_الكرسي 』*
+*◞🕋◜╎.أية_الإخلاص 』*
+*◞🕋◜╎.نصيحه 』*
+*◞🕋◜╎.فيديو_قران 』*
+*◞🕋◜╎.الصلاة 』*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*「قـسـم╎🎮╎التـرفـيـه」*
+
+*◞🎮◜╎.اكس او 』*
+*◞🎮◜╎.كت 』*
+*◞🎮◜╎.ذكاء 』*
+*◞🎮◜╎.غباء 』*
+*◞🎮◜╎.جمال 』*
+*◞🎮◜╎.الحب 』*
+*◞🎮◜╎.لو 』*
+*◞🎮◜╎.هل 』*
+*◞🎮◜╎.ترجمه 』*
+*◞🎮◜╎.اديت-سيارات 』*
+*◞🎮◜╎.اديت 』*
+*◞🎮◜╎.اديت2 』*
+*◞🎮◜╎.زواج 』*
+*◞🎮◜╎.طلاق 』*
+*◞🎮◜╎.حروف 』*
+*◞🎮◜╎.علم 』*
+*◞🎮◜╎.تاج 』*
+*◞🎮◜╎.حكمه 』*
+*◞🎮◜╎.ميمز 』*
+*◞🎮◜╎.سؤال 』*
+*◞🎮◜╎.قلب 』*
+*◞🎮◜╎.احزر 』*
+*◞🎮◜╎.عين 』*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*「قـسـم╎📲╎التـنـزيـلات」*
+
+*◞📲◜╎.ويكيبيديا 』*
+*◞📲◜╎.شغل 』*
+*◞📲◜╎.Play 』*
+*◞📲◜╎.Play2 』*
+*◞📲◜╎.اسم_الاغنية 』*
+*◞📲◜╎.صوره 』*
+*◞📲◜╎.خلفيات 』*
+*◞📲◜╎.تطبيق 』*
+*◞📲◜╎.بحث 』*
+*◞📲◜╎.بين』*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*「قـسـم╎🌀╎التـحـويـلات」*
+
+*◞🌀◜╎.ملصق 』*
+*◞🌀◜╎.سرقة 』*
+*◞🌀◜╎.تليجراف 』*
+*◞🌀◜╎.باركود 』*
+*◞🌀◜╎.تصميم 』*
+*◞🌀◜╎.زخرفه 』*
+*◞🌀◜╎.خط 』*
+*⌬∙ • ──╾⊱﹝⛩️﹞⊰╼── • ∙⌬*
+*⛩️𝐷𝐸𝐶𝛩_𝐵𝛩𝑇⛩️*
+
+*˼‏◈┋تـوقـيـع ⇆ ˼‏📜˹ ↯*
+*〔مـمـلـكة ┊﹝⛩️﹞┊ديـنـشـو〕*
+*⌬┣━ ╼╾ •✥┋﹝⛩️﹞┋✥• ╼╾ ━┫⌬* 
+
+
+`.trim();
+
+conn.sendMessage(m.chat, {
+        video: { url: videoUrl }, caption: str,
+  mentions: [m.sender,global.conn.user.jid],
+  gifPlayback: true,gifAttribution: 0
+    }, { quoted: m });
+}; 
+handler.help = ['main']
+handler.tags = ['group']
+handler.command = ['اوامر'] 
+
+export default handler
 function clockString(ms) {
-    let h = Math.floor(ms / 3600000);
-    let m = Math.floor(ms % 3600000 / 60000);
-    let s = Math.floor(ms % 60000 / 1000);
-    return [h, m, s].map(v => v.toString().padStart(2, '0')).join(':');
-}
+    let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+    let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+    let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+    return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')}
 
-import pkg from '@whiskeysockets/baileys';
-const { generateWAMessageFromContent, proto, prepareWAMessageMedia } = pkg;
-
-const handler = async (m, {conn, usedPrefix, usedPrefix: _p, __dirname, text, isPrems}) => {
-    let d = new Date(new Date + 3600000);
-    let locale = 'ar';
-    let week = d.toLocaleDateString(locale, { weekday: 'long' });
-    let date = d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
-    let _uptime = process.uptime() * 1000;
-    let uptime = clockString(_uptime);
-    let user = global.db.data.users[m.sender];
-    let name = conn.getName(m.sender)
-    let { money, joincount } = global.db.data.users[m.sender];
-    let { exp, limit, level, role } = global.db.data.users[m.sender];
-    let rtotalreg = Object.values(global.db.data.users).filter(user => user.registered == true).length;
-    let more = String.fromCharCode(8206);
-    let readMore = more.repeat(850);
-    let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-    let taguser = '@' + m.sender.split("@s.whatsapp.net")[0];
-  await conn.sendMessage(m.chat, { react: { text: '📂', key: m.key } })
-  const zack = 'https://qu.ax/ORrM.jpg'
-  const mentionId = m.key.participant || m.key.remoteJid;
- 
-conn.relayMessage(m.chat, { viewOnceMessage: { message: { interactiveMessage: { header: { title: `harley`}, body: { text: `˼⚡˹↜ مـࢪحـبـا بـك/ي @${mentionId.split('@')[0]}
-> ˼🪪˹↜ مــعــلــومــاتــك ↶
-╮───────────────────⟢ـ
-┆⚡↜ بـريـمـيـوم↞⌊ ${user.premiumTime > 0 ? 'مــمـ🔱ـيز' : (isPrems ? 'مــمـ🔱ـيز' : 'عــ🍁ــادي') || ''} ⌉
-┆⚜️↜ مـــســـتواك↞⌊ ${level} ⌉
-┆💫↜ رتـبـتـك↞⌊ ${role} ⌉
-┆🧰↜ الـخـبـرة↞⌊ ${exp} ⌉
-┆💎↜ الـمـاس↞⌊ ${limit} ⌉
-╯───────────────────⟢ـ
-> ˼🔆˹↜مـعـلـومات الــبــوت↶
-╮───────────────────⟢ـ
-┆⚙️ ↜اسـم الـبـوت ↶﹝𝐔𝐧𝐨𝐡𝐚𝐧𝐚﹞
-┆🪄 ↜الـمـطـوريـن ↶﹝𝙱𝚁𝚄𝙲𝙴 & 𝚂𝚙𝚎𝚎𝚍𝚢﹞
-┆📌 ↜الـتـشـغـيـل ↶﹝${uptime}﹞
-┆🔖 ↜الــمــســتـخـدمـيـن ↶﹝${rtotalreg}﹞
-╯───────────────────⟢ـ
-> ˼🍷˹↜مـجـمـوعـات الـمـطـور↶
-╮───────────────────⟢ـ
-┆🕋 ↜قـنـاة الـمـطـور الـديـنـيه ↶ ﹝ https://whatsapp.com/channel/0029VaobATOJ93wRumZwCJ3i ﹞
-┆🧣 ↜قـنـاة الــبــوت ↶ ﹝ https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g ﹞
-╯───────────────────⟢ـ
-> © 𝙱𝚁𝚄𝙲𝙴 & 𝚂𝚙𝚎𝚎𝚍𝚢 2025`,subtitle: "BRUCE WAYNE",},header: { hasMediaAttachment: true,...(await prepareWAMessageMedia({ image : { url: zack } }, { upload: conn.waUploadToServer }, {quoted: m}))},
-                    contextInfo: {
-                        mentionedJid: [m.sender],
-                        isForwarded: false,
-                    },nativeFlowMessage: { buttons: [
-
-
-                            {
-                                name: 'single_select',
-                                buttonParamsJson: JSON.stringify({
-                                    title: '⌈🛡╎الــقــوائـــم╎🛡⌋',
-                                    sections: [
-                                        {
-                                            title: 'ممــرحـ🛡ـبــا بــك فـي مــ☑هــام اونوهانا بـ🤖ـوت',
-                                            highlight_label: 'خذ راحتك 🫦',
-                                            rows: [
-                                                {
-                                                    header: 'الــقـ👑ـســم الـاول',
-                                                    title: 'استدعاء_قسم_الاعضاء #الاعضاء',
-                                                    description: '',
-                                                    id: '.ق1'
-                                                },
-                                                {
-                                                    header: 'الــقـ👨🏻‍💻ـســم الــثــانــي',
-                                                    title: 'استدعاء_قسم_المشرفين #المشرفين',
-                                                    description: '',
-                                                    id: '.ق10'
-                                                },
-                                                {
-                                                    header: 'الــقـ🕋ـســم الــثــالــث',
-                                                    title: 'استدعاء_قسم_الدين #الدين',
-                                                    description: '',
-                                                    id: '.ق2'
-                                                },
-                                                {
-                                                    header: 'الــقـ👑ـســم الــرابــع',
-                                                    title: 'استدعاء_قسم_المطور #المطور',
-                                                    description: '',
-                                                    id: '.ق3'
-                                                },
-                                                {
-                                                    header: 'الــقـ🛡ـســم الــخــامــس',
-                                                    title: 'استدعاء_قسم_التنزيلات #التنزيلات',
-                                                    description: '',
-                                                    id: '.ق4'
-                                                },
-                                                {
-                                                    header: 'الــقـ🕹ـســم الــســادس',
-                                                    title: 'استدعاء_قسم_الالعاب #الالعاب',
-                                                    description: '',
-                                                    id: '.ق5'
-                                                },
-                                                {
-                                                    header: 'الــقـ🌀ـســم الــســابــع',
-                                                    title: 'استدعاء_قسم_التحويلات #التحويلات',
-                                                    description: '',
-                                                    id: '.ق6'
-                                                },
-                                                {
-                                                    header: 'الــقـ🤖ـســم الــتــاســع',
-                                                    title: 'استدعاء_قسم_الذكاء #الذكاء',
-                                                    description: '',
-                                                    id: '.ق7'
-                                                },
-                                                {
-                                                    header: 'الــقـ🚨ـســم الــعــاشــر',
-                                                    title: 'استدعاء_قسم_الدعم #الدعم',
-                                                    description: '',
-                                                    id: '.ق8'
-                                                },
-                                                {
-                                                    header: 'الــقـ🔍ـســم �لــحــاديــة عــشــر',
-                                                    title: 'استدعاء_قسم_ابحث #البحث',
-                                                    description: '',
-                                                    id: '.ق11'
-                                               }
-                                            ]
-                                        }
-                                    ]
-                                }),
-                  messageParamsJson: ''
-                     },
-                     {
-               name: "cta_url",
-               buttonParamsJson: '{"display_text":"⌈📲╎قـنـاة الــبــوت╎📲⌋","url":"https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g","merchant_url":"https://whatsapp.com/channel/0029VafG0N8I1rclRCFLaL0g"}'
-                            }
-                        ]
-                    }
-                }
-            }
-        }
-    }, {});
-}
-
-handler.help = ['info'];
-handler.tags = ['main'];
-handler.command = ['menu', 'مهام', 'اوامر','الاوامر','قائمة','القائمة']
-
-export default handler;
+    function ucapan() {
+      const time = moment.tz('Egypt').format('HH')
+      let res = "بداية يوم سعيده ☀️"
+      if (time >= 4) {
+        res = "صباح الخير 🌄"
+      }
+      if (time >= 10) {
+        res = "مساء الخير ☀️"
+      }
+      if (time >= 15) {
+        res = "مساء الخير 🌇"
+      }
+      if (time >= 18) {
+        res = "مساء الخير 🌙"
+      }
+      return res
+    }
