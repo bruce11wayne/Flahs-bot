@@ -7,7 +7,8 @@ await conn.sendMessage(m.chat, { react: { text: '🧭', key: m.key } })
     conn.sendFile(m.chat, 'https://qu.ax/dnRWN.mp4', 'menu.mp3', message, m);
 };
 
-handler.customPrefix = /^المطور.|. المطور$/i;
-handler.command = new RegExp;
+handler.help = ['main']
+handler.tags = ['group']
+handler.command = ['المطور'] 
 
 export default handler;
