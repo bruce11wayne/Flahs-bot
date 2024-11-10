@@ -2,7 +2,7 @@ import fetch from 'node-fetch'
 
 var handler = async (m, { conn, text }) => {
 if (!text) throw `*Masukan Judul Manga Yang Ingin Kamu Cari !*`
-conn.reply(m.chat, 'Sedang mencari manga... Silahkan tunggu', m)
+conn.reply(m.chat, 'خطأ قوم بكتابه اسم المانجا بالإنجليزية', m)
 let res = await fetch('https://api.jikan.moe/v4/manga?q=' + text)
 if (!res.ok) throw 'Tidak Ditemukan'
 let json = await res.json()
