@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 let handler = async (m, { conn }) => {
-await conn.sendMessage(m.chat, { react: { text: '👥', key: m.key } });
+await conn.sendMessage(m.chat, { react: { text: '💑', key: m.key } });
   
   let data = await (await fetch('https://raw.githubusercontent.com/Afghhjjkoo/GURU-BOT/main/lib/5%D8%AA%D8%B7%D9%82%D9%8A%D9%85.json')).json()
   let cita = data[Math.floor(Math.random() * data.length)]
