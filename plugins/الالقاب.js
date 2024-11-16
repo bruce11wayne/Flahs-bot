@@ -68,7 +68,7 @@ let handler = async function (message, { conn, text, command, isAdmin }) {
                 await BK9.findOneAndUpdate({ userId, groupId: message.chat }, { bk9: nickname }, { upsert: true });
                 message.reply('> *تم تسجيله بلقب ' + nickname + ' بنجاح ☑️*');
             }
-        } else if (command === 'حذف-تسجيل') {
+        } else if (command === 'حذف_تسجيل') {
             if (!message.isGroup) {
                 message.reply('هذا الأمر يعمل فقط في المجموعات');
                 return;
@@ -126,7 +126,7 @@ let handler = async function (message, { conn, text, command, isAdmin }) {
     }
 };
 
-handler.command = ['الالقاب','تسجيل', 'لقبي', 'لقبه', 'حذف-تسجيل', 'متوفر'];
+handler.command = ['الالقاب','تسجيل', 'لقبي', 'لقبه', 'حذف_تسجيل', 'متوفر'];
 handler.tags = ['BK9'];
 
 export default handler;
