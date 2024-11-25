@@ -1474,7 +1474,7 @@ mentionedJid:[user],
 "title": [wm, '😻 𝗦𝘂𝗽𝗲𝗿 ' + gt + ' 😻', '🌟 centergatabot.gmail.com'].getRandom(),
 "containsAutoReply": true,
 "mediaType": 1, 
-sourceUrl: 'https://chat.whatsapp.com/D8rDe6vGUuX4pwrjxFM1l8' }}}, { quoted: fkontak2 })
+sourceUrl: 'https://whatsapp.com/channel/0029VaobATOJ93wRumZwCJ3i' }}}, { quoted: fkontak2 })
 apii.data = ''
 //this.sendFile(id, apii.data, 'pp.jpg', text, null, false, { mentions: [user] }, { quoted: fkontak2 })
 }}}
