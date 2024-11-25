@@ -7,7 +7,7 @@ await conn.sendMessage(m.chat, { react: { text: '😶‍🌫️', key: m.key } }
     conn.sendFile(m.chat, 'https://file.io/g0ycu8vaP47h.mp3', 'menu.mp3', message, m);
 };
 
-handler.customPrefix = /^تست$/i;
+handler.customPrefix = /^اه$/i;
 handler.command = new RegExp;
 
 export default handler;
