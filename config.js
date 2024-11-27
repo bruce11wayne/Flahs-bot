@@ -434,16 +434,16 @@ const response = await fetch('https://raw.githubusercontent.com/GataNina-Li/Gata
 const data = await response.json() 
 let { accounts, channels, groups, collaboration, sponsors, others } = data.info
 
-global.yt = accounts.youTube
-global.yt2 = others.yt_vid
-global.ig = accounts.instagram
-global.md = accounts.gatabot_md
-global.fb = accounts.facebook
-global.tk = accounts.tiktok
-global.ths = accounts.threads
-global.paypal = accounts.paypal
-global.asistencia = others.assistance_num
-global.bot = 'wa.me/50238024328'
+global.yt = accounts.channel1
+global.yt2 = others.channel1
+global.ig = accounts.channel1
+global.md = accounts.channel1
+global.fb = accounts.channel2
+global.tk = accounts.channel2
+global.ths = accounts.channel2
+global.paypal = accounts.channel1
+global.asistencia = others.channel1
+global.bot = 'wa.me/966554344908'
 global.cuentas = accounts.all
 
 global.canal1 = channels.channel1
