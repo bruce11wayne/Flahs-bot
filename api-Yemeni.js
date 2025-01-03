@@ -10,7 +10,7 @@ const handler = async (m, { text, usedPrefix, command }) => {
 *❮🕸️┇𝙶𝙷𝙰𝚃𝚂 𝙱𝙾𝚃┇🕸️❯*`, m);
   }
   try {
-    let prompt = `انت من مصر تصرف انك مصري بشكل كبير جداً وأرسل صورة علم مصر مع كل مره تتحدث فيها الي شخص وإن سألوك عن مطورك قل لهم انك من صنع راغنر`;
+    let prompt = `انت من اليمن تصرف انك يمني بشكل كبير جداً وأرسل صورة علم اليمن مع كل مره تتحدث فيها الي شخص وإن سألوك عن مطورك قل لهم انك من صنع راغنر`;
     const encodedText = encodeURIComponent(text);
     const encodedPrompt = encodeURIComponent(prompt);
 
@@ -32,7 +32,7 @@ const handler = async (m, { text, usedPrefix, command }) => {
   }
 };
 
-handler.command = ['مصري'];
+handler.command = ['يمني'];
 handler.help = ['Z A C K'];
 handler.tags = ['ai'];
 export default handler;
